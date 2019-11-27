@@ -1,0 +1,14 @@
+{
+  "name": "stocks-api",
+  "version": "1.0.0",
+  "description": "This fetches stocks data from the alphavantage api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ignacio N Aguirre",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  }
+}
