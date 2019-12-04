@@ -1,4 +1,4 @@
-# Simple Stocks API made with Node
+# Simple Stocks API made with Node.js
 
 Node.js API for get stocks data.
 Limited to 5 requests per minute.
