@@ -4,7 +4,8 @@
   "description": "This fetches stocks data from the alphavantage api",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "author": "Ignacio N Aguirre",
   "license": "ISC",
