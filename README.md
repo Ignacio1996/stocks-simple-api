@@ -10,7 +10,7 @@ If you get CORS issues, just plug in https://cors-anywhere.herokuapp.com/ before
 
 const request = await fetch('https://cors-anywhere.herokuapp.com/https://stocksapi.herokuapp.com/stock' ...  // code below
 
-Sample single stock request:
+Sample single stock request with Javascript fetch:
 ```
 const getStock = async ticker =>{
   console.log("Getting data");
