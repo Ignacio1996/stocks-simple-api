@@ -1,4 +1,4 @@
-# stocks-simple-api
+# Simple Stocks API made with Node
 
 Node.js API for get stocks data.
 Limited to 5 requests per minute.
@@ -6,7 +6,11 @@ Working with the Alphavantage API free version.
 
 # Very limited functionality for now, created this in 1 hour so far
 
-Sample request:
+If you get CORS issues, just plug in https://cors-anywhere.herokuapp.com/ before the fetch url
+
+const request = await fetch('https://cors-anywhere.herokuapp.com/https://stocksapi.herokuapp.com/stock' ...  // code below
+
+Sample single stock request:
 ```
 const getStock = async ticker =>{
   console.log("Getting data");
@@ -30,6 +34,30 @@ const getStock = async ticker =>{
 getStock('AAPL');
 ```
 
-If you get CORS issues, just plug in https://cors-anywhere.herokuapp.com/ before the fetch url
+Sample multiple stocks request (with cors-anywhere to avoid CORS issues):
 
-const request = await fetch('https://cors-anywhere.herokuapp.com/https://stocksapi.herokuapp.com/stock' ...  //above code
+```
+const getStocks = async tickersArray=>{
+  console.log("Getting data");
+  const request = await fetch('https://cors-anywhere.herokuapp.com/https://stocksapi.herokuapp.com/stocks',{
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: JSON.stringify({
+      'tickers': tickersArray,
+      'type': 'daily'
+    })
+  })
+
+  const data = await request.json()
+  console.log(data);
+  return data;
+}
+
+getStocks(['AAPL', 'MSFT', 'DIA']);
+```
+
+
+
