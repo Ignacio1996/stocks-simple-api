@@ -8,6 +8,8 @@ app.use(bodyParser.json());
 
 require("dotenv").config();
 
+const timePeriod = require("./constants");
+
 /*
 {
 	"ticker": "TWOU",
@@ -20,7 +22,9 @@ app.post("/stock", async (req, res) => {
   const { ticker, type } = body;
   console.log("stocks-api.js 14 | body", body.ticker);
   const request = await fetch(
-    `https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY_ADJUSTED&symbol=${ticker}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`
+    `https://www.alphavantage.co/query?function=${timePeriod(
+      type
+    )}&symbol=${ticker}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`
   );
   const data = await request.json();
   res.json({ data: data });
@@ -38,9 +42,20 @@ app.post("/stocks", async (req, res) => {
     return data;
   });
 
-  Promise.all(stocks).then(values=>console.log('stocks-api.js 40 | values', values))
-
-  res.json({ data: data });
+  Promise.all(stocks)
+    .then(values => {
+      console.log("stocks-api.js 40 | values", values);
+      if (values[0].Note) {
+        console.log("stocks-api.js 48 | error", values[0].Note);
+        res.json({ error: values[0].Note });
+      } else {
+        res.json({ data: values, status: 'done' });
+      }
+    })
+    .catch(error => {
+      console.log("stocks-api.js 47 | error", error);
+      res.json({ error: error });
+    });
 });
 
 app.listen(process.env.PORT || 8080, () => {
