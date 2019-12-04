@@ -1,6 +1,6 @@
 # Simple Stocks API made with Node.js
 
-Node.js API for get stocks data.
+Node.js API to get updated stocks data.
 Limited to 5 requests per minute.
 Working with the Alphavantage API free version.
 
@@ -47,7 +47,7 @@ const getStocks = async tickersArray=>{
     },
     body: JSON.stringify({
       'tickers': tickersArray,
-      'type': 'daily'
+      'type': 'monthly'
     })
   })
 
@@ -58,6 +58,14 @@ const getStocks = async tickersArray=>{
 
 getStocks(['AAPL', 'MSFT', 'DIA']);
 ```
+
+# body params
+types: 
+'monthly' 
+'daily'
+
+ticker: 'any-ticker' //example 'AAPL'
+tickers: ['multiple', 'tickers', 'array']
 
 
 
