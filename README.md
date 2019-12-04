@@ -15,7 +15,7 @@ Sample single stock request with Javascript fetch:
 const getStock = async ticker =>{
   console.log("Getting data");
   const request = await fetch('https://stocksapi.herokuapp.com/stock',{
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
@@ -40,7 +40,7 @@ Sample multiple stocks request (with cors-anywhere to avoid CORS issues):
 const getStocks = async tickersArray=>{
   console.log("Getting data");
   const request = await fetch('https://cors-anywhere.herokuapp.com/https://stocksapi.herokuapp.com/stocks',{
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    method: 'POST', 
     headers: {
       'Content-Type': 'application/json'
       // 'Content-Type': 'application/x-www-form-urlencoded',
