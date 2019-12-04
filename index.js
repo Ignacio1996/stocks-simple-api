@@ -3,8 +3,12 @@ const app = express();
 const bodyParser = require("body-parser");
 const fetch = require("node-fetch");
 
+const ejs = require('ejs');
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.set('view engine', 'ejs')
 
 require("dotenv").config();
 
@@ -16,6 +20,10 @@ const timePeriod = require("./constants");
 	"type": "monthly"
 }
 */
+
+app.get('/', (req,res)=>{
+  res.render('index')
+})
 
 app.post("/stock", async (req, res) => {
   const body = JSON.parse(JSON.stringify(req.body));
