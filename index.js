@@ -16,14 +16,6 @@ require("dotenv").config();
 
 const timePeriod = require("./constants");
 
-const cron = require("cron");
-
-// var cronJob = cron.job("*/30 * * * * *", () => {
-//   // perform operation e.g. GET request http.get() etc.
-//   console.info("cron job completed");
-// });
-// cronJob.start();
-
 app.get("/", (req, res) => {
   res.render("index");
 });
