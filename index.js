@@ -81,35 +81,13 @@ app.post("/stocks-unlimited", async (req, res) => {
         `https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY_ADJUSTED&symbol=${ticker}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`
       );
       const data = await request.json();
-      console.log("stocks-api 82 | data", Object.values(data)[0]);
       stocksArray.push(Object.values(data)[0]);
       console.log("stocks-api 84 | stocks array", stocksArray);
       if (stocksArray.length === tickers.length) {
-        res.json({ tickers: stocksArray });
+        res.json({ tickers: stocksArray});
       }
     }, index * 12000);
   });
-
-  // setTimeout(async () => {
-  //   res.json({
-  //     tickers: stocksArray,
-  //   })
-  // }, 12000 * tickers.length);
-
-  // Promise.all(stocks)
-  //   .then(values => {
-  //     console.log("stocks-api.js 40 | values", values);
-  //     if (values[0].Note) {
-  //       console.log("stocks-api.js 48 | error", values[0].Note);
-  //       res.json({ error: values[0].Note });
-  //     } else {
-  //       res.json({ data: values, status: "done" });
-  //     }
-  //   })
-  //   .catch(error => {
-  //     console.log("stocks-api.js 47 | error", error);
-  //     res.json({ error: error });
-  //   });
 });
 
 app.listen(process.env.PORT || 8080, () => {
