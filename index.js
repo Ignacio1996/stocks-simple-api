@@ -3,8 +3,6 @@ const app = express();
 const bodyParser = require("body-parser");
 const fetch = require("node-fetch");
 
-const ejs = require("ejs");
-
 const cors = require("cors");
 app.use(cors());
 app.options('*', cors());
@@ -12,17 +10,9 @@ app.options('*', cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.set("view engine", "ejs");
-
 require("dotenv").config();
 
 const timePeriod = require("./constants");
-
-app.get("/", (req, res) => {
-  res.render("index");
-});
-
-
 
 app.post("/stock", cors(), async (req, res) => {
   const body = JSON.parse(JSON.stringify(req.body));
@@ -37,7 +27,7 @@ app.post("/stock", cors(), async (req, res) => {
   res.json({ data: data });
 });
 
-app.post("/stocks", async (req, res) => {
+app.post("/stocks", async (req, res) => { //less than 5 stocks per minute
   const body = JSON.parse(JSON.stringify(req.body));
   const { tickers, type } = body;
   console.log("stocks-api.js 14 | body", body.tickers);
@@ -65,7 +55,7 @@ app.post("/stocks", async (req, res) => {
     });
 });
 
-app.post("/stocks-unlimited", async (req, res) => {
+app.post("/stocks-unlimited", async (req, res) => {//unlimited stocks in 12 seconds X number of tickers (i.e 10 tickers = 120 seconds to get data.)
   const body = JSON.parse(JSON.stringify(req.body));
   const { tickers, type } = body;
   console.log("stocks-api 74 | tickers length", tickers.length);
