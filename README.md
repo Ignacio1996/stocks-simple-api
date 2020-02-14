@@ -4,7 +4,7 @@ Node.js API to get updated stocks data.
 Limited to 5 requests per minute.
 Working with the Alphavantage API free version.
 
-# Very limited functionality for now, created this in 1 hour so far
+# Very limited functionality for now
 
 If you get CORS issues, just plug in https://cors-anywhere.herokuapp.com/ before the fetch url
 
