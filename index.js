@@ -6,6 +6,8 @@ const fetch = require("node-fetch");
 const ejs = require("ejs");
 
 const cors = require("cors");
+app.use(cors());
+app.options('*', cors());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -19,6 +21,8 @@ const timePeriod = require("./constants");
 app.get("/", (req, res) => {
   res.render("index");
 });
+
+
 
 app.post("/stock", cors(), async (req, res) => {
   const body = JSON.parse(JSON.stringify(req.body));
