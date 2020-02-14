@@ -67,7 +67,7 @@ app.post("/stocks-unlimited", async (req, res) => {//unlimited stocks in 12 seco
         `https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY_ADJUSTED&symbol=${ticker}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`
       );
       const data = await request.json();
-      stocksArray.push(Object.values(data)[0]);
+      stocksArray.push(Object.values(data));
       console.log("stocks-api 84 | stocks array", stocksArray);
       if (stocksArray.length === tickers.length) {
         res.json({ tickers: stocksArray});
