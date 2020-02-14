@@ -33,7 +33,7 @@ app.post("/stocks", async (req, res) => { //less than 5 stocks per minute
   console.log("stocks-api.js 14 | body", body.tickers);
   let stocks = await tickers.map(async ticker => {
     const request = await fetch(
-      `https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY_ADJUSTED&symbol=${ticker}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`
+      `https://www.alphavantage.co/query?function=${timePeriod(type)}&symbol=${ticker}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`
     );
     const data = await request.json();
     return data;
@@ -64,7 +64,7 @@ app.post("/stocks-unlimited", async (req, res) => {//unlimited stocks in 12 seco
   await tickers.forEach(async (ticker, index) => {
     setTimeout(async () => {
       const request = await fetch(
-        `https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY_ADJUSTED&symbol=${ticker}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`
+        `https://www.alphavantage.co/query?function=${timePeriod(type)}&symbol=${ticker}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`
       );
       const data = await request.json();
       stocksArray.push(Object.values(data));
